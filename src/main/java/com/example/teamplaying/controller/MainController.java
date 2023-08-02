@@ -191,7 +191,7 @@ public class MainController {
             return "redirect:/totalMyPage";
         } else {
             rttr.addFlashAttribute("message", "회원 정보시 문제가 발생했습니다.");
-            return "redirect:/modify?userId=" + member.getUserId();
+            return "redirect:/totalMyPage";
         }
     }
 

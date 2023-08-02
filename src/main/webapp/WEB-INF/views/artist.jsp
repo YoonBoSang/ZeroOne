@@ -166,7 +166,7 @@
                                      class="child" onclick="view(this)"
                                      data-bs-toggle="modal" data-bs-target="#shoeModal${list.boardIdList[status.index]}"
                                      data-id="${list.boardIdList[status.index]}">
-                                    <img style="width: 15vh; border-radius: 4px;"
+                                    <img style="min-height: 15vh; width: 15vh; border-radius: 4px;"
                                          src="${img}"
                                          alt="">
                                 </div>
