@@ -147,85 +147,93 @@
 </div>
 
 <div class="container" style="margin-top: 86px;">
-    <form action="/work" class="search-form" role="search">
-        <input id="searchInput" value="${param.search}" name="search" class="form-control search-input"
-               type="text" placeholder="Search" aria-label="search" style="border-color: black;">
-        <button id="search" class="btn btn-outline-success" type="submit" style="color: black; border-color: black;">
-            <i class="fa-solid fa-magnifying-glass"></i>
-        </button>
-    </form>
-    <div class="d-flex" style="margin-left: -165px;">
-        <div class="dropdown" style="margin-right: 20px;">
-            <button id="brandDropDown" class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false" style="width: 300px; text-align: left;">
-                ${pageInfo.brand}
-            </button>
-            <c:url value="/work" var="nikeBrandUrl">
-                <c:if test="${not empty param.page}">
-                    <c:param name="page" value="${param.page}"></c:param>
-                </c:if>
-                <c:if test="${not empty param.search}">
-                    <c:param name="search" value="${param.search}"></c:param>
-                </c:if>
-                <c:param name="brand" value="나이키"></c:param>
-            </c:url>
-            <c:url value="/work" var="adidasBrandUrl">
-                <c:if test="${not empty param.page}">
-                    <c:param name="page" value="${param.page}"></c:param>
-                </c:if>
-                <c:if test="${not empty param.search}">
-                    <c:param name="search" value="${param.search}"></c:param>
-                </c:if>
-                <c:param name="brand" value="아디다스"></c:param>
-            </c:url>
-            <c:url value="/work" var="vansBrandUrl">
-                <c:if test="${not empty param.page}">
-                    <c:param name="page" value="${param.page}"></c:param>
-                </c:if>
-                <c:if test="${not empty param.search}">
-                    <c:param name="search" value="${param.search}"></c:param>
-                </c:if>
-                <c:param name="brand" value="반스"></c:param>
-            </c:url>
-            <c:url value="/work" var="converseBrandUrl">
-                <c:if test="${not empty param.page}">
-                    <c:param name="page" value="${param.page}"></c:param>
-                </c:if>
-                <c:if test="${not empty param.search}">
-                    <c:param name="search" value="${param.search}"></c:param>
-                </c:if>
-                <c:param name="brand" value="컨버스"></c:param>
-            </c:url>
-            <c:url value="/work" var="allBrandUrl">
-                <c:if test="${not empty param.page}">
-                    <c:param name="page" value="${param.page}"></c:param>
-                </c:if>
-                <c:if test="${not empty param.search}">
-                    <c:param name="search" value="${param.search}"></c:param>
-                </c:if>
-            </c:url>
-            <ul class="dropdown-menu" style="width: 300px; font-family: 'Jeju Gothic', sans-serif;">
+    <div style="display: flex">
+        <div class="d-flex" style="margin-left: -200px;">
+            <div class="dropdown" style="margin-right: 20px;">
+                <button id="brandDropDown" class="btn btn-warning dropdown-toggle" type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false" style="width: 300px; text-align: left;">
+                    ${pageInfo.brand}
+                </button>
+                <c:url value="/work" var="nikeBrandUrl">
+                    <c:if test="${not empty param.page}">
+                        <c:param name="page" value="${param.page}"></c:param>
+                    </c:if>
+                    <c:if test="${not empty param.search}">
+                        <c:param name="search" value="${param.search}"></c:param>
+                    </c:if>
+                    <c:param name="brand" value="나이키"></c:param>
+                </c:url>
+                <c:url value="/work" var="adidasBrandUrl">
+                    <c:if test="${not empty param.page}">
+                        <c:param name="page" value="${param.page}"></c:param>
+                    </c:if>
+                    <c:if test="${not empty param.search}">
+                        <c:param name="search" value="${param.search}"></c:param>
+                    </c:if>
+                    <c:param name="brand" value="아디다스"></c:param>
+                </c:url>
+                <c:url value="/work" var="vansBrandUrl">
+                    <c:if test="${not empty param.page}">
+                        <c:param name="page" value="${param.page}"></c:param>
+                    </c:if>
+                    <c:if test="${not empty param.search}">
+                        <c:param name="search" value="${param.search}"></c:param>
+                    </c:if>
+                    <c:param name="brand" value="반스"></c:param>
+                </c:url>
+                <c:url value="/work" var="converseBrandUrl">
+                    <c:if test="${not empty param.page}">
+                        <c:param name="page" value="${param.page}"></c:param>
+                    </c:if>
+                    <c:if test="${not empty param.search}">
+                        <c:param name="search" value="${param.search}"></c:param>
+                    </c:if>
+                    <c:param name="brand" value="컨버스"></c:param>
+                </c:url>
+                <c:url value="/work" var="allBrandUrl">
+                    <c:if test="${not empty param.page}">
+                        <c:param name="page" value="${param.page}"></c:param>
+                    </c:if>
+                    <c:if test="${not empty param.search}">
+                        <c:param name="search" value="${param.search}"></c:param>
+                    </c:if>
+                </c:url>
+                <ul class="dropdown-menu" style="width: 300px; font-family: 'Jeju Gothic', sans-serif;">
 
-                <li><a class="dropdown-item" href="${allBrandUrl}">모든 작품</a></li>
-                <li><a class="dropdown-item ShoeBrand" href="${nikeBrandUrl}" id="nike">나이키</a></li>
-                <li><a class="dropdown-item ShoeBrand" href="${adidasBrandUrl}" id="adidas">아디다스</a></li>
-                <li><a class="dropdown-item ShoeBrand" href="${vansBrandUrl}" id="vans">반스</a></li>
-                <li><a class="dropdown-item ShoeBrand" href="${converseBrandUrl}" id="converse">컨버스</a></li>
-            </ul>
+                    <li><a class="dropdown-item" href="${allBrandUrl}">모든 작품</a></li>
+                    <li><a class="dropdown-item ShoeBrand" href="${nikeBrandUrl}" id="nike">나이키</a></li>
+                    <li><a class="dropdown-item ShoeBrand" href="${adidasBrandUrl}" id="adidas">아디다스</a></li>
+                    <li><a class="dropdown-item ShoeBrand" href="${vansBrandUrl}" id="vans">반스</a></li>
+                    <li><a class="dropdown-item ShoeBrand" href="${converseBrandUrl}" id="converse">컨버스</a></li>
+                </ul>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false" style="width: 300px; text-align: left;">
+                    ${alignInfo}
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="/work?name=최신순&brand=${pageInfo.brand}">최신순</a></li>
+                    <li><a class="dropdown-item"
+                           href="/work?order=likeCount&direction=DESC&name=좋아요순&brand=${pageInfo.brand}">좋아요순</a></li>
+                    <li><a class="dropdown-item"
+                           href="/work?order=view&direction=DESC&name=조회수순&brand=${pageInfo.brand}">조회수순</a></li>
+                    <li><a class="dropdown-item"
+                           href="/work?order=price&direction=DESC&name=높은가격순&brand=${pageInfo.brand}">높은가격순</a></li>
+                    <li><a class="dropdown-item"
+                           href="/work?order=price&direction=ASC&name=낮은가격순&brand=${pageInfo.brand}">낮은가격순</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="dropdown">
-            <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false" style="width: 300px; text-align: left;">
-                ${alignInfo}
+        <form action="/work" class="search-form" role="search" style="margin-left: auto;">
+            <input id="searchInput" value="${param.search}" name="search" class="form-control search-input"
+                   type="text" placeholder="Search" aria-label="search" style="border-color: black;">
+            <button id="search" class="btn btn-outline-success" type="submit"
+                    style="margin-right: 73px; color: black; border-color: black;">
+                <i class="fa-solid fa-magnifying-glass"></i>
             </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/work?name=최신순&brand=${pageInfo.brand}">최신순</a></li>
-                <li><a class="dropdown-item" href="/work?order=likeCount&direction=DESC&name=좋아요순&brand=${pageInfo.brand}">좋아요순</a></li>
-                <li><a class="dropdown-item" href="/work?order=view&direction=DESC&name=조회수순&brand=${pageInfo.brand}">조회수순</a></li>
-                <li><a class="dropdown-item" href="/work?order=price&direction=DESC&name=높은가격순&brand=${pageInfo.brand}">높은가격순</a></li>
-                <li><a class="dropdown-item" href="/work?order=price&direction=ASC&name=낮은가격순&brand=${pageInfo.brand}">낮은가격순</a></li>
-            </ul>
-        </div>
+        </form>
     </div>
 
     <br><br>
@@ -326,7 +334,8 @@
                                         <h1 id="boardTitle${board.id}">${board.title}</h1>
                                         <c:if test="${myUserId eq board.userId || myMemberType eq 'admin'}">
                                             <div>
-                                                <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
+                                                <button type="button" class="btn btn-outline-danger"
+                                                        data-bs-toggle="modal"
                                                         data-bs-target="#shoeBoardRemoveModal${board.id}">삭제
                                                 </button>
                                             </div>
@@ -400,7 +409,8 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     해당 게시물을 삭제하시겠습니까?
@@ -409,7 +419,9 @@
                                     <form action="/shoeDelete">
                                         <input type="hidden" value="work" name="url">
                                         <input type="hidden" value="${board.id}" name="boardId">
-                                        <button style="margin-right: 1px;" type="submit" class="btn btn-outline-danger">삭제</button>
+                                        <button style="margin-right: 1px;" type="submit" class="btn btn-outline-danger">
+                                            삭제
+                                        </button>
                                     </form>
                                     <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">취소
                                     </button>
