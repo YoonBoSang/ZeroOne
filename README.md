@@ -47,10 +47,6 @@
     <ul>
         <img src="https://github.com/mut-jin/TeamPlaying/assets/112159785/2e1d25af-938f-41c8-a3d2-d57e1abbdf88">
     </ul>
-    
-    <ul>
-        <img src="https://bucket0503-65rg4e4b5dfz.s3.ap-northeast-2.amazonaws.com/ZeroOne/20230630164747.png">
-    </ul>
 </div>
 <br/>
 <h1>ERD</h1>
