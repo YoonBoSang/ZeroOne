@@ -58,6 +58,11 @@ public class MainController {
     @Autowired
     private PaymentService paymentService;
 
+    @GetMapping("member/checkId/{userId}")
+    @ResponseBody
+    public Map<String, Object> checkUserId(@PathVariable String userId) {
+        return memberService.IDCheck(userId);
+    }
 
     @GetMapping("checkEmail/{email}")
     @ResponseBody
@@ -97,7 +102,7 @@ public class MainController {
 
         String myMemberType = "";
 
-        if(authentication == null) {
+        if (authentication == null) {
             getShoeList.put("myUserId", "");
         } else {
             myMemberType = memberService.getMemberType(authentication.getName());
@@ -120,6 +125,31 @@ public class MainController {
 
     @GetMapping("signup")
     public void signupForm() {
+
+    }
+
+    @GetMapping("findId")
+    public void findId() {
+
+    }
+
+    @ResponseBody
+    @PostMapping("findId")
+    public String findIdCheck(@RequestParam String name, @RequestParam String email) {
+        String foundId = memberService.findIdByNameAndEmail(name, email);
+        return foundId != null ? foundId : "아이디를 찾을 수 없습니다.";
+    }
+
+    @GetMapping("checkExistEmail/{userId}/{email}")
+    @ResponseBody
+    public Map<String, Object> checkExistEmail(@PathVariable("userId") String userId,
+                                               @PathVariable("email") String email) {
+
+        return memberService.checkExistEmail(userId, email);
+    }
+
+    @GetMapping("findPW")
+    public void findPW() {
 
     }
 
@@ -161,7 +191,7 @@ public class MainController {
 
     @GetMapping("totalMyPage")
     public String myPage(Authentication authentication, Model model) {
-        if(authentication == null) {
+        if (authentication == null) {
             return "redirect:/login";
         }
         Member member = memberService.get(authentication.getName());
@@ -218,7 +248,7 @@ public class MainController {
                        Authentication authentication) {
         String myUserId;
         String myMemberType = "";
-        if(authentication == null) {
+        if (authentication == null) {
             myUserId = "";
         } else {
             myMemberType = memberService.getMemberType(authentication.getName());
@@ -278,7 +308,7 @@ public class MainController {
     ) {
         String myMemberType = "";
         String myUserId;
-        if(authentication == null) {
+        if (authentication == null) {
             myUserId = "";
         } else {
             myUserId = authentication.getName();
@@ -298,7 +328,7 @@ public class MainController {
                              @RequestParam(value = "page", defaultValue = "1") Integer page,
                              Authentication authentication) {
         String myUserId = "";
-        if(authentication != null) {
+        if (authentication != null) {
             myUserId = authentication.getName();
         }
         Map<String, Object> result = memberService.getMember(id, page, myUserId);
@@ -373,7 +403,7 @@ public class MainController {
     public String myCsPage(Model model,
                            @PathVariable Integer id,
                            Authentication authentication) {
-        if(!memberService.check(authentication, id)) {
+        if (!memberService.check(authentication, id)) {
             return "main";
         }
         Map<String, Object> result = csService.getCsBoardById(id, authentication.getName());
@@ -385,7 +415,7 @@ public class MainController {
     @PostMapping("csRemove")
     public String csRemove(Integer id, RedirectAttributes rttr,
                            Authentication authentication) {
-        if(!csService.getWriterById(id).equals(memberService.getNickName(authentication.getName()))) {
+        if (!csService.getWriterById(id).equals(memberService.getNickName(authentication.getName()))) {
             return "main";
         }
         boolean ok = csService.remove(id);
@@ -400,8 +430,8 @@ public class MainController {
     @PreAuthorize("isAuthenticated()")
     @GetMapping("csModify")
     public String csModify(Integer id, Model model,
-                         Authentication authentication) {
-        if(!csService.getWriterById(id).equals(memberService.getNickName(authentication.getName()))) {
+                           Authentication authentication) {
+        if (!csService.getWriterById(id).equals(memberService.getNickName(authentication.getName()))) {
             return "main";
         }
         Map<String, Object> result = csService.getCsBoardById(id);
@@ -558,6 +588,7 @@ public class MainController {
     public ShoeComment commentGet(@PathVariable("id") Integer id) {
         return shoeBoardService.getComment(id);
     }
+
     @GetMapping("members")
     @PreAuthorize("@customSecurityChecker.checkAdmin(authentication)")
     public String showMemberList(Model model, Authentication authentication) {

@@ -152,7 +152,6 @@ public class MemberService {
 
         Integer artistNum = mapper.getArtistNum(search);
         Integer lastPageNum = (artistNum - 1) / rowPerPage + 1;
-
         Integer rightPageNum = ((page - 1) / 5 + 1) * 5;
         Integer leftPageNum = rightPageNum - 4;
         leftPageNum = Math.max(leftPageNum, 1);
@@ -298,4 +297,8 @@ public class MemberService {
         return mapper.getMemberTypeByUserId(name);
     }
 
+    public Map<String, Object> checkExistEmail(String userId, String email) {
+        Member member = mapper.selectByEmailOfUserId(userId, email);
+        return Map.of("available", member != null);
+    }
 }

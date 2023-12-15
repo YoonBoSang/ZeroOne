@@ -255,4 +255,10 @@ public interface MemberMapper {
             WHERE id = #{memberId}
             """)
     String getProfile(Integer memberId);
+
+    @Select("""
+            SELECT * FROM Member
+            WHERE userId = #{userId} AND email = #{email}
+            """)
+    Member selectByEmailOfUserId(String userId, String email);
 }

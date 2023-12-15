@@ -32,3 +32,4 @@ build/
 ### VS Code ###
 .vscode/
 custom.properties
+/src/main/java/com/example/teamplaying/config/MailConfig.java
